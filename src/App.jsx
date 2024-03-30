@@ -19,30 +19,32 @@ const App = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Movieland</h1>
+    <div className="container">
       <div className="search">
         <input
-          type="text"
+          type="search"
           placeholder="Search For Movies"
+          maxLength={50}
+          autoFocus
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <button onClick={() => searchMovies(searchTerm)}>Search</button>
       </div>
-
+      <div className="wrapper">
       {movies?.length > 0 ? (
-        <div className="container">
+        <div className="movie">
           {movies.map((movie) => (
             <MovieCard movie={movie} key={movie.Title} />
           ))}
         </div>
       ) : (
         <div className="empty">
-          <h2>No Movies Found</h2>
+          <h2 hidden>No Movies Found</h2>
         </div>
       )}
-    </div>
+      </div>
+      </div>
   );
 };
 
